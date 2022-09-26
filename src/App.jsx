@@ -72,7 +72,7 @@ function App() {
             pokeName={pokeName}
             data={data}
           />
-          loading ? <LoadingComponent /> : <MyPokemons pokeList={pokeList} />
+              {loading ? <LoadingComponent /> : <MyPokemons pokeList={pokeList} />}
           {/* <h2>Pokédex</h2>
           <ul style={{ listStyleType: 'none' }}>
             {pokeList?.map(({ name, img }) => {
