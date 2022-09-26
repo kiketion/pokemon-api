@@ -3,6 +3,13 @@ import useFetching from './hooks/useFetching';
 import PokeSearch from './components/PokeSearch';
 import MyPokemons from './components/MyPokemons';
 
+const LoadingComponent = () => (
+  <div>
+    Loading...
+  </div>
+)
+
+
 function App() {
   const [search, setSearch] = useState();
   const [pokeName, setPokeName] = useState('');
@@ -65,7 +72,7 @@ function App() {
             pokeName={pokeName}
             data={data}
           />
-          <MyPokemons pokeList={pokeList} />
+          loading ? <LoadingComponent /> : <MyPokemons pokeList={pokeList} />
           {/* <h2>Pokédex</h2>
           <ul style={{ listStyleType: 'none' }}>
             {pokeList?.map(({ name, img }) => {
