@@ -14,8 +14,8 @@ const useFetching = (search) => {
 
   useEffect(() => {
     if (search) {
-      setError();
       setLoading(true);
+      setError();
 
       fetch(`https://pokeapi.co/api/v2/pokemon/${search}`)
         .then((res) => res.json())
@@ -39,10 +39,6 @@ const useFetching = (search) => {
         });
     }
   }, [search]);
-
-  if (loading) {
-    return <h3>Loading...</h3>;
-  }
 
   return { data, loading, error };
 };

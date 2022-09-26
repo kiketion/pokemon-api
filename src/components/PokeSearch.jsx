@@ -1,11 +1,23 @@
+import { useState } from 'react';
+
 const PokeSearch = ({
   handleSearch,
-  handleChange,
+  loading,
+  error,
   handleSave,
   searchName,
-  pokeName,
   data,
 }) => {
+  const [pokeName, setPokeName] = useState('');
+
+  const handleChange = (e) => {
+    setPokeName(e.target.value);
+    e.preventDefault();
+  };
+
+  if (loading) return <h1>LOADING...</h1>;
+  if (error) return <h1>ERROR! Please, reload the page...</h1>;
+
   return (
     <div
       style={{
@@ -45,7 +57,10 @@ const PokeSearch = ({
               border: 'none',
               borderRadius: '20%',
             }}
-            onClick={handleSearch}
+            onClick={() => {
+              handleSearch(pokeName);
+              setPokeName('');
+            }}
           >
             Search
           </button>
