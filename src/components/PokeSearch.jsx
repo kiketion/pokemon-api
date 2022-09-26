@@ -51,7 +51,7 @@ const PokeSearch = ({
           </button>
         </form>
       </div>
-      {data.name && (
+      {data?.name && (
         <div
           style={{
             display: 'flex',
