@@ -52,7 +52,7 @@ function App() {
   }
     
   if (error) {
-    return <ErrorComponent />
+    return <ErrorComponent error={error.toString()} />
   }
 
   return (
