@@ -15,6 +15,7 @@ const useFetching = (search) => {
   useEffect(() => {
     if (search) {
       setError();
+      setLoading(true);
 
       fetch(`https://pokeapi.co/api/v2/pokemon/${search}`)
         .then((res) => res.json())
@@ -27,8 +28,6 @@ const useFetching = (search) => {
             defense: info.stats[2].base_stat,
             type: info.types[0].type.name,
           });
-          setLoading(true);
-
           console.log(info);
         })
 
