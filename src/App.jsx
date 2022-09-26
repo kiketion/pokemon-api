@@ -9,6 +9,11 @@ const LoadingComponent = () => (
   </div>
 )
 
+const ErrorComponent = (error) => (
+  <div>
+    {error}
+  </div>
+)
 
 function App() {
   const [search, setSearch] = useState();
@@ -41,6 +46,14 @@ function App() {
     }
     console.log([...pokeList, data]);
   };
+  
+  if (loading) {
+    return <LoadingComponent />
+  }
+    
+  if (error) {
+    return <ErrorComponent />
+  }
 
   return (
     <div>
@@ -72,7 +85,7 @@ function App() {
             pokeName={pokeName}
             data={data}
           />
-              {loading ? <LoadingComponent /> : <MyPokemons pokeList={pokeList} />}
+              <MyPokemons pokeList={pokeList} />
           {/* <h2>Pokédex</h2>
           <ul style={{ listStyleType: 'none' }}>
             {pokeList?.map(({ name, img }) => {
