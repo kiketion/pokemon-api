@@ -1,11 +1,12 @@
-import { useState } from 'react';
+import { useState, createContext } from 'react';
 import useFetching from './hooks/useFetching';
 import PokeSearch from './components/PokeSearch';
 import MyPokemons from './components/MyPokemons';
 
+export const PokeContext = createContext();
+
 function App() {
   const [search, setSearch] = useState();
-
   const [pokeList, setPokeList] = useState([]);
   const { data, loading, error } = useFetching(search);
 
@@ -14,7 +15,7 @@ function App() {
     setSearch('');
   };
 
-  const handleClick = (pokeName) => {
+  const handleSearch = (pokeName) => {
     setSearch(pokeName);
   };
 
@@ -30,21 +31,20 @@ function App() {
   };
 
   return (
-    <div>
-      <div>
-        <div>
-          <PokeSearch
-            handleSearch={handleClick}
-            handleSave={handleSave}
-            searchName={searchName}
-            data={data}
-            loading={loading}
-            error={error}
-          />
-          <MyPokemons pokeList={pokeList} />
-        </div>
-      </div>
-    </div>
+    <PokeContext.Provider
+      value={{
+        handleSearch,
+        handleSave,
+        searchName,
+        data,
+        loading,
+        error,
+        pokeList,
+      }}
+    >
+      <PokeSearch />
+      <MyPokemons />
+    </PokeContext.Provider>
   );
 }
 

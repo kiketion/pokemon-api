@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { PokeContext } from '../App';
 
-const MyPokemons = ({ pokeList }) => {
+const MyPokemons = () => {
+  const { pokeList } = useContext(PokeContext);
+
   return (
     <div style={{ display: 'flex', justifyContent: 'center' }}>
       <div>

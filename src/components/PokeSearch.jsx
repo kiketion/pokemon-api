@@ -1,22 +1,42 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { PokeContext } from '../App';
 
-const PokeSearch = ({
-  handleSearch,
-  loading,
-  error,
-  handleSave,
-  searchName,
-  data,
-}) => {
+const PokeSearch = () => {
   const [pokeName, setPokeName] = useState('');
+  const { handleSearch, loading, error, handleSave, searchName, data } =
+    useContext(PokeContext);
 
   const handleChange = (e) => {
     setPokeName(e.target.value);
     e.preventDefault();
   };
 
-  if (loading) return <h1>LOADING...</h1>;
-  if (error) return <h1>ERROR! Please, reload the page...</h1>;
+  if (loading)
+    return (
+      <h1
+        style={{
+          textAlign: 'center',
+          fontFamily: 'arial',
+          fontFamily: 'arial',
+          marginTop: '65px',
+        }}
+      >
+        LOADING...
+      </h1>
+    );
+  if (error)
+    return (
+      <h1
+        style={{
+          textAlign: 'center',
+          fontFamily: 'arial',
+          fontFamily: 'arial',
+          marginTop: '65px',
+        }}
+      >
+        ERROR! Please, reload the page...
+      </h1>
+    );
 
   return (
     <div
