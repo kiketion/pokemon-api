@@ -1,7 +1,9 @@
 import { useState, createContext } from 'react';
 import useFetching from './hooks/useFetching';
-import PokeSearch from './components/PokeSearch';
-import MyPokemons from './components/MyPokemons';
+import { Route, Routes } from 'react-router-dom';
+import NavBar from './components/NavBar/NavBar';
+import Home from './pages/Home';
+import PokeList from './pages/PokeList';
 
 export const PokeContext = createContext();
 
@@ -31,20 +33,28 @@ function App() {
   };
 
   return (
-    <PokeContext.Provider
-      value={{
-        handleSearch,
-        handleSave,
-        searchName,
-        data,
-        loading,
-        error,
-        pokeList,
-      }}
-    >
-      <PokeSearch />
-      <MyPokemons />
-    </PokeContext.Provider>
+    <>
+      <PokeContext.Provider
+        value={{
+          handleSearch,
+          handleSave,
+          searchName,
+          data,
+          loading,
+          error,
+          pokeList,
+        }}
+      >
+        <NavBar />
+
+        <div>
+          <Routes>
+            <Route path='/' element={<Home />} />
+            <Route path='/pokelist' element={<PokeList />} />
+          </Routes>
+        </div>
+      </PokeContext.Provider>
+    </>
   );
 }
 

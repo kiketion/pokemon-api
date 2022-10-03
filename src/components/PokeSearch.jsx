@@ -17,7 +17,6 @@ const PokeSearch = () => {
         style={{
           textAlign: 'center',
           fontFamily: 'arial',
-          fontFamily: 'arial',
           marginTop: '65px',
         }}
       >
